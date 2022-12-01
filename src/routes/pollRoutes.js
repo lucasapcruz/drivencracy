@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPoll, getPolls } from "../controllers/polls.controller.js";
+import { createPoll, getPolls } from "../controllers/choices.controller.js";
 import { pollSchemaValidation } from "../middlewares/pollSchemaValidation.js";
 
 const pollRoute = Router();

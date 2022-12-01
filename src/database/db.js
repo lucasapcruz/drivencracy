@@ -15,11 +15,11 @@ try {
 db = mongoClient.db("drivencracy");
 
 const votes = db.collection("votes");
-const options = db.collection("options");
+const choices = db.collection("choices");
 const polls = db.collection("polls")
 
 export {
   votes,
-  options,
+  choices,
   polls
 }
