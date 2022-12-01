@@ -28,6 +28,7 @@ export async function createPoll(req, res){
     }
 }
 
+
 export async function getPolls(req, res){
 
     try {
