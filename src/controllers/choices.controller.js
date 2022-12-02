@@ -46,7 +46,7 @@ export async function gteChoicesInPoll(req, res) {
 
     try {
         const choicesInPoll = await choices
-            .find({ pollId: pollId })
+            .find({ pollId: new ObjectId(pollId) })
             .toArray()
 
         res.status(200).send(choicesInPoll)

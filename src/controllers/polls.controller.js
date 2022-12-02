@@ -55,7 +55,7 @@ export async function getPollResult(req, res) {
             return
         }
 
-        const choicesForPoll = await choices.find({ pollId: pollId }).toArray()
+        const choicesForPoll = await choices.find({ pollId: new ObjectId(pollId) }).toArray()
 
         const choicesIdsForPoll = choicesForPoll.map((choice) => choice._id.toString())
 
@@ -78,7 +78,7 @@ export async function getPollResult(req, res) {
 
         const votesForMostedVotedChoice = votesForChoices[0]
 
-        const mostVotedChoice = choicesForPoll.filter((choice) => choice._id.toString() === mostVotedChoiceResult._id)[0]
+        const mostVotedChoice = choicesForPoll.filter((choice) => choice._id.toString() === votesForMostedVotedChoice._id)[0]
 
         const result = {
             title: mostVotedChoice.title,
