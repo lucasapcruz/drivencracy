@@ -3,7 +3,12 @@ import { choices, votes } from "../database/db.js"
 import { formatDateTime } from "../library/miscellanous.js";
 
 export async function defineChoice(req, res) {
-    const choice = req.body
+    const {title, pollId} = req.body
+
+    const choice = {
+        title,
+        pollId = new ObjectId(pollId)
+    }
 
     try {
         await choices
