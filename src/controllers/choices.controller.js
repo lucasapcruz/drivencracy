@@ -55,8 +55,6 @@ export async function voteOnChoice(req, res) {
     try {
         const choiceExists = await choices.findOne({ _id: new ObjectId(choiceId) });
 
-        console.log(choiceExists);
-
         if (!choiceExists) {
             res.sendStatus(404);
             return;
