@@ -64,8 +64,15 @@ export async function voteOnChoice(req, res) {
 export async function gteChoicesInPoll(req, res) {
     const pollId = req.params.id
 
-
     try {
+
+        const pollExists = await polls.findOne({_id: new ObjectId(pollId)})
+
+        if(!pollExists){
+            res.sendStatus(404)
+            return
+        }
+
         const choicesInPoll = await choices
             .find({ pollId: new ObjectId(pollId) })
             .toArray()
