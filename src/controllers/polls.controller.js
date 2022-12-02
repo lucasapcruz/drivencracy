@@ -76,13 +76,13 @@ export async function getPollResult(req, res) {
             }
         ]).toArray()
 
-        const mostVotedChoiceResult = votesForChoices[0]
+        const votesForMostedVotedChoice = votesForChoices[0]
 
         const mostVotedChoice = choicesForPoll.filter((choice) => choice._id.toString() === mostVotedChoiceResult._id)[0]
 
         const result = {
             title: mostVotedChoice.title,
-            votes: mostVotedChoiceResult.numberOfVotes
+            votes: votesForMostedVotedChoice.numberOfVotes
         }
 
         const resultForPoll = {
