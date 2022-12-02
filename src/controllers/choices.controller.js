@@ -13,15 +13,22 @@ export async function defineChoice(req, res) {
     try {
         const pollExists = await polls.findOne({_id: new ObjectId(pollId)})
 
-        const titleAlreadyExists = await polls.find({title}).toArray()
-
         if(!pollExists){
             res.sendStatus(404)
             return
         }
 
+        const titleAlreadyExists = await polls.find({title}).toArray()
+
         if(titleAlreadyExists){
             res.sendStatus(409)
+            return
+        }
+
+        const hasPollExpired = dayjs(pollExists.expireAt).valueOf() < Date.now()
+
+        if(hasPollExpired){
+            res.sendStatus(403)
             return
         }
 
