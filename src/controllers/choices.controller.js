@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { choices, votes } from "../database/db.js"
 import { formatDateTime } from "../library/miscellanous.js";
 
@@ -16,10 +17,10 @@ export async function defineChoice(req, res) {
 }
 
 export async function voteOnChoice(req, res) {
-    const pollId = req.params.id
+    const choiceId = req.params.id
     const vote = {
         createdAt: formatDateTime(Date.now()),
-        pollId
+        choiceId
     }
 
 
