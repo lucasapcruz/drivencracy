@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 import { choices, votes , polls} from "../database/db.js"
 import { formatDateTime } from "../library/miscellanous.js";
+import dayjs from "dayjs";
 
 export async function defineChoice(req, res) {
     const {title, pollId} = req.body
@@ -53,6 +54,8 @@ export async function voteOnChoice(req, res) {
     try {
 
         const choiceExists = await choices.findOne({_id: new ObjectId(choiceId)})
+
+        console.log(choiceExists)
 
         if(!choiceExists){
             res.sendStatus(404)
