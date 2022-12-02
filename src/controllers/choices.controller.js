@@ -79,7 +79,7 @@ export async function voteOnChoice(req, res) {
     }
 }
 
-export async function gteChoicesInPoll(req, res) {
+export async function getChoicesInPoll(req, res) {
     const pollId = req.params.id;
 
     try {

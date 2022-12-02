@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { gteChoicesInPoll } from "../controllers/choices.controller.js";
+import { getChoicesInPoll } from "../controllers/choices.controller.js";
 import {
   createPoll,
   getPollResult,
@@ -11,7 +11,7 @@ const pollRoute = Router();
 
 pollRoute.post("/poll", pollSchemaValidation, createPoll);
 pollRoute.get("/poll", getPolls);
-pollRoute.get("/poll/:id/choice", gteChoicesInPoll);
+pollRoute.get("/poll/:id/choice", getChoicesInPoll);
 pollRoute.get("/poll/:id/result", getPollResult);
 
 export default pollRoute;
