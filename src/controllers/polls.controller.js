@@ -50,10 +50,15 @@ export async function getPollResult(req, res) {
         const poll = await polls
             .findOne({ _id: new ObjectId(pollId) })
 
+        if(!poll){
+            res.sendStatus(404)
+            return
+        }
+
         const choicesForPoll = await choices.find({ pollId: pollId }).toArray()
 
         const choicesIdsForPoll = choicesForPoll.map((choice) => choice._id.toString())
-        
+
         const votesForChoices = await votes.aggregate([
             {
                 $match: { choiceId: { $in: choicesIdsForPoll } }
