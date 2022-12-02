@@ -51,6 +51,23 @@ export async function voteOnChoice(req, res) {
 
 
     try {
+
+        const choiceExists = await choices.findOne({_id: new ObjectId(choiceId)})
+
+        if(!choiceExists){
+            res.sendStatus(404)
+            return
+        }
+
+        const poll = await polls.findOne({_id: new ObjectId(choiceExists.pollId)})
+        
+        const isPollExpired = dayjs(poll.expireAt).valueOf() < Date.now()
+
+        if(isPollExpired){
+            res.sendStatus(403)
+            return
+        }
+
         await votes
             .insertOne(vote)
 
