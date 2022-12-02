@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { choices, votes } from "../database/db.js"
+import { choices, votes , polls} from "../database/db.js"
 import { formatDateTime } from "../library/miscellanous.js";
 
 export async function defineChoice(req, res) {
@@ -11,6 +11,20 @@ export async function defineChoice(req, res) {
     }
 
     try {
+        const pollExists = await polls.findOne({_id: new ObjectId(pollId)})
+
+        const titleAlreadyExists = await polls.find({title}).toArray()
+
+        if(!pollExists){
+            res.sendStatus(404)
+            return
+        }
+
+        if(titleAlreadyExists){
+            res.sendStatus(409)
+            return
+        }
+
         await choices
             .insertOne(choice)
 
