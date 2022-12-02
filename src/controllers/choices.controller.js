@@ -7,7 +7,7 @@ export async function defineChoice(req, res) {
 
     const choice = {
         title,
-        pollId = new ObjectId(pollId)
+        pollId: new ObjectId(pollId)
     }
 
     try {
@@ -25,7 +25,7 @@ export async function voteOnChoice(req, res) {
     const choiceId = req.params.id
     const vote = {
         createdAt: formatDateTime(Date.now()),
-        choiceId
+        choiceId: new ObjectId(choiceId)
     }
 
 
