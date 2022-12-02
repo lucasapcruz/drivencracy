@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { MongoClient, ServerApiVersion} from "mongodb";
+import { MongoClient, ServerApiVersion } from "mongodb";
 
 dotenv.config();
 
@@ -16,10 +16,6 @@ db = mongoClient.db("drivencracy");
 
 const votes = db.collection("votes");
 const choices = db.collection("choices");
-const polls = db.collection("polls")
+const polls = db.collection("polls");
 
-export {
-  votes,
-  choices,
-  polls
-}
+export { votes, choices, polls };

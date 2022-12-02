@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { defineChoice, voteOnChoice } from "../controllers/choices.controller.js";
+import {
+  defineChoice,
+  voteOnChoice,
+} from "../controllers/choices.controller.js";
 import { choiceSchemaValidation } from "../middlewares/choiceSchemaValidation.js";
 
 const choiceRoute = Router();
